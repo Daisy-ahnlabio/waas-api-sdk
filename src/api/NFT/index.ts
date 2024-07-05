@@ -1,0 +1,10 @@
+export { default as getNFTApprovalForAllData } from "./getNFTApprovalForAllData";
+export { default as getNFTApproveData } from "./getNFTApproveData";
+export { default as getNFTApproved } from "./getNFTApproved";
+export { default as getNFTApprovedForAll } from "./getNFTApprovedForAll";
+export { default as getNFTBalance } from "./getNFTBalance";
+export { default as getNFTName } from "./getNFTName";
+export { default as getNFTOwner } from "./getNFTOwner";
+export { default as getNFTSymbol } from "./getNFTSymbol";
+export { default as getNFTTotalSupply } from "./getNFTTotalSupply";
+export { default as getNFTTransferFromData } from "./getNFTTransferFromData";

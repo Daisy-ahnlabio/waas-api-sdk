@@ -1,0 +1,158 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getBlock = exports.getTokenInfo = exports.getTokenAllowance = exports.generateTokenTransferData = exports.generateTokenApproveData = exports.signTypedData = exports.signTransaction = exports.postSign = exports.PreSign = exports.decrypt = exports.encrypt = exports.getSecureChannel = exports.getNFTTransferFromData = exports.getNFTTotalSupply = exports.getNFTSymbol = exports.getNFTOwner = exports.getNFTName = exports.getNFTBalance = exports.getNFTApprovedForAll = exports.getNFTApproved = exports.getNFTApproveData = exports.getNFTApprovalForAllData = exports.preRecoverWallet = exports.postWallet = exports.postRecoverWallet = exports.getWalletInfo = exports.createOrRecoverWallet = exports.checkDevicePasswordShare = exports.checkDevicePassword = exports.recoverShare = exports.mpcServerSign = exports.generateShare = exports.fetchSuggestedGasFees = exports.fetchGasPrice = exports.estimateGasFee = exports.ethCallLegacy = exports.ethCallEIP1559 = exports.ethCall = exports.simulateTransfer = exports.sendRawTransaction = exports.getWalletBalanceAptos = exports.getTransferPreData = exports.getSequenceNumber = exports.getGasEstimate = exports.getAptosTransaction = exports.getAptosAddress = exports.getAccountInfo = exports.verifyAddress = exports.getWalletBalance = exports.getNonce = void 0;
+exports.verifyEmailCode = exports.sendVerificationCode = exports.login = exports.createUserWithoutCode = exports.createUserWithCode = exports.createSNSUser = exports.checkUserAvailability = exports.getTransactionsWalletscan = exports.getTokens = exports.getTokenPriceByContract = exports.getTokenPrice = exports.getTokenMetadata = exports.getNftsByContractAddress = exports.getNfts = exports.sendTransaction = exports.getTransactions = exports.getTransactionReceipt = exports.getTransactionCount = exports.getTransactionByHash = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+// Address
+var getNonce_1 = require("./api/Address/getNonce");
+Object.defineProperty(exports, "getNonce", { enumerable: true, get: function () { return __importDefault(getNonce_1).default; } });
+var getWalletBalance_1 = require("./api/Address/getWalletBalance");
+Object.defineProperty(exports, "getWalletBalance", { enumerable: true, get: function () { return __importDefault(getWalletBalance_1).default; } });
+var verifyAddress_1 = require("./api/Address/verifyAddress");
+Object.defineProperty(exports, "verifyAddress", { enumerable: true, get: function () { return __importDefault(verifyAddress_1).default; } });
+// Aptos
+var getAccountInfo_1 = require("./api/Aptos/getAccountInfo");
+Object.defineProperty(exports, "getAccountInfo", { enumerable: true, get: function () { return __importDefault(getAccountInfo_1).default; } });
+var getAptosAddress_1 = require("./api/Aptos/getAptosAddress");
+Object.defineProperty(exports, "getAptosAddress", { enumerable: true, get: function () { return __importDefault(getAptosAddress_1).default; } });
+var getAptosTransaction_1 = require("./api/Aptos/getAptosTransaction");
+Object.defineProperty(exports, "getAptosTransaction", { enumerable: true, get: function () { return __importDefault(getAptosTransaction_1).default; } });
+var getGasEstimate_1 = require("./api/Aptos/getGasEstimate");
+Object.defineProperty(exports, "getGasEstimate", { enumerable: true, get: function () { return __importDefault(getGasEstimate_1).default; } });
+var getSequenceNumber_1 = require("./api/Aptos/getSequenceNumber");
+Object.defineProperty(exports, "getSequenceNumber", { enumerable: true, get: function () { return __importDefault(getSequenceNumber_1).default; } });
+var getTransferPreData_1 = require("./api/Aptos/getTransferPreData");
+Object.defineProperty(exports, "getTransferPreData", { enumerable: true, get: function () { return __importDefault(getTransferPreData_1).default; } });
+var getWalletBalance_2 = require("./api/Aptos/getWalletBalance");
+Object.defineProperty(exports, "getWalletBalanceAptos", { enumerable: true, get: function () { return __importDefault(getWalletBalance_2).default; } });
+var sendRawTransaction_1 = require("./api/Aptos/sendRawTransaction");
+Object.defineProperty(exports, "sendRawTransaction", { enumerable: true, get: function () { return __importDefault(sendRawTransaction_1).default; } });
+var simulateTransfer_1 = require("./api/Aptos/simulateTransfer");
+Object.defineProperty(exports, "simulateTransfer", { enumerable: true, get: function () { return __importDefault(simulateTransfer_1).default; } });
+// Contract
+var ethCall_1 = require("./api/Contract/ethCall");
+Object.defineProperty(exports, "ethCall", { enumerable: true, get: function () { return __importDefault(ethCall_1).default; } });
+var ethCallEIP1559_1 = require("./api/Contract/ethCallEIP1559");
+Object.defineProperty(exports, "ethCallEIP1559", { enumerable: true, get: function () { return __importDefault(ethCallEIP1559_1).default; } });
+var ethCallLegacy_1 = require("./api/Contract/ethCallLegacy");
+Object.defineProperty(exports, "ethCallLegacy", { enumerable: true, get: function () { return __importDefault(ethCallLegacy_1).default; } });
+// Gas
+var estimateGasFee_1 = require("./api/Gas/estimateGasFee");
+Object.defineProperty(exports, "estimateGasFee", { enumerable: true, get: function () { return __importDefault(estimateGasFee_1).default; } });
+var fetchGasPrice_1 = require("./api/Gas/fetchGasPrice");
+Object.defineProperty(exports, "fetchGasPrice", { enumerable: true, get: function () { return __importDefault(fetchGasPrice_1).default; } });
+var fetchSuggestedGasFees_1 = require("./api/Gas/fetchSuggestedGasFees");
+Object.defineProperty(exports, "fetchSuggestedGasFees", { enumerable: true, get: function () { return __importDefault(fetchSuggestedGasFees_1).default; } });
+// MPCServer
+var generateShare_1 = require("./api/MPCServer/generateShare");
+Object.defineProperty(exports, "generateShare", { enumerable: true, get: function () { return __importDefault(generateShare_1).default; } });
+var mpcServerSign_1 = require("./api/MPCServer/mpcServerSign");
+Object.defineProperty(exports, "mpcServerSign", { enumerable: true, get: function () { return __importDefault(mpcServerSign_1).default; } });
+var recoverShare_1 = require("./api/MPCServer/recoverShare");
+Object.defineProperty(exports, "recoverShare", { enumerable: true, get: function () { return __importDefault(recoverShare_1).default; } });
+// MPCWallet
+var checkDevicePassword_1 = require("./api/MPCWallet/checkDevicePassword");
+Object.defineProperty(exports, "checkDevicePassword", { enumerable: true, get: function () { return __importDefault(checkDevicePassword_1).default; } });
+var checkDevicePasswordShare_1 = require("./api/MPCWallet/checkDevicePasswordShare");
+Object.defineProperty(exports, "checkDevicePasswordShare", { enumerable: true, get: function () { return __importDefault(checkDevicePasswordShare_1).default; } });
+var createOrRecoverWallet_1 = require("./api/MPCWallet/createOrRecoverWallet");
+Object.defineProperty(exports, "createOrRecoverWallet", { enumerable: true, get: function () { return __importDefault(createOrRecoverWallet_1).default; } });
+var getWalletInfo_1 = require("./api/MPCWallet/getWalletInfo");
+Object.defineProperty(exports, "getWalletInfo", { enumerable: true, get: function () { return __importDefault(getWalletInfo_1).default; } });
+var postRecoverWallet_1 = require("./api/MPCWallet/postRecoverWallet");
+Object.defineProperty(exports, "postRecoverWallet", { enumerable: true, get: function () { return __importDefault(postRecoverWallet_1).default; } });
+var postWallet_1 = require("./api/MPCWallet/postWallet");
+Object.defineProperty(exports, "postWallet", { enumerable: true, get: function () { return __importDefault(postWallet_1).default; } });
+var preRecoverWallet_1 = require("./api/MPCWallet/preRecoverWallet");
+Object.defineProperty(exports, "preRecoverWallet", { enumerable: true, get: function () { return __importDefault(preRecoverWallet_1).default; } });
+// NFT
+var getNFTApprovalForAllData_1 = require("./api/NFT/getNFTApprovalForAllData");
+Object.defineProperty(exports, "getNFTApprovalForAllData", { enumerable: true, get: function () { return __importDefault(getNFTApprovalForAllData_1).default; } });
+var getNFTApproveData_1 = require("./api/NFT/getNFTApproveData");
+Object.defineProperty(exports, "getNFTApproveData", { enumerable: true, get: function () { return __importDefault(getNFTApproveData_1).default; } });
+var getNFTApproved_1 = require("./api/NFT/getNFTApproved");
+Object.defineProperty(exports, "getNFTApproved", { enumerable: true, get: function () { return __importDefault(getNFTApproved_1).default; } });
+var getNFTApprovedForAll_1 = require("./api/NFT/getNFTApprovedForAll");
+Object.defineProperty(exports, "getNFTApprovedForAll", { enumerable: true, get: function () { return __importDefault(getNFTApprovedForAll_1).default; } });
+var getNFTBalance_1 = require("./api/NFT/getNFTBalance");
+Object.defineProperty(exports, "getNFTBalance", { enumerable: true, get: function () { return __importDefault(getNFTBalance_1).default; } });
+var getNFTName_1 = require("./api/NFT/getNFTName");
+Object.defineProperty(exports, "getNFTName", { enumerable: true, get: function () { return __importDefault(getNFTName_1).default; } });
+var getNFTOwner_1 = require("./api/NFT/getNFTOwner");
+Object.defineProperty(exports, "getNFTOwner", { enumerable: true, get: function () { return __importDefault(getNFTOwner_1).default; } });
+var getNFTSymbol_1 = require("./api/NFT/getNFTSymbol");
+Object.defineProperty(exports, "getNFTSymbol", { enumerable: true, get: function () { return __importDefault(getNFTSymbol_1).default; } });
+var getNFTTotalSupply_1 = require("./api/NFT/getNFTTotalSupply");
+Object.defineProperty(exports, "getNFTTotalSupply", { enumerable: true, get: function () { return __importDefault(getNFTTotalSupply_1).default; } });
+var getNFTTransferFromData_1 = require("./api/NFT/getNFTTransferFromData");
+Object.defineProperty(exports, "getNFTTransferFromData", { enumerable: true, get: function () { return __importDefault(getNFTTransferFromData_1).default; } });
+// Secure-Channel
+var AuthUtil_1 = require("./api/Secure-Channel/AuthUtil");
+Object.defineProperty(exports, "getSecureChannel", { enumerable: true, get: function () { return AuthUtil_1.getSecureChannel; } });
+Object.defineProperty(exports, "encrypt", { enumerable: true, get: function () { return AuthUtil_1.encrypt; } });
+Object.defineProperty(exports, "decrypt", { enumerable: true, get: function () { return AuthUtil_1.decrypt; } });
+// Sign
+var PreSign_1 = require("./api/Sign/PreSign");
+Object.defineProperty(exports, "PreSign", { enumerable: true, get: function () { return __importDefault(PreSign_1).default; } });
+var postSign_1 = require("./api/Sign/postSign");
+Object.defineProperty(exports, "postSign", { enumerable: true, get: function () { return __importDefault(postSign_1).default; } });
+var signTransaction_1 = require("./api/Sign/signTransaction");
+Object.defineProperty(exports, "signTransaction", { enumerable: true, get: function () { return __importDefault(signTransaction_1).default; } });
+var signTypedData_1 = require("./api/Sign/signTypedData");
+Object.defineProperty(exports, "signTypedData", { enumerable: true, get: function () { return __importDefault(signTypedData_1).default; } });
+// Token
+var generateTokenApproveData_1 = require("./api/Token/generateTokenApproveData");
+Object.defineProperty(exports, "generateTokenApproveData", { enumerable: true, get: function () { return __importDefault(generateTokenApproveData_1).default; } });
+var generateTokenTransferData_1 = require("./api/Token/generateTokenTransferData");
+Object.defineProperty(exports, "generateTokenTransferData", { enumerable: true, get: function () { return __importDefault(generateTokenTransferData_1).default; } });
+var getTokenAllowance_1 = require("./api/Token/getTokenAllowance");
+Object.defineProperty(exports, "getTokenAllowance", { enumerable: true, get: function () { return __importDefault(getTokenAllowance_1).default; } });
+var getTokenInfo_1 = require("./api/Token/getTokenInfo");
+Object.defineProperty(exports, "getTokenInfo", { enumerable: true, get: function () { return __importDefault(getTokenInfo_1).default; } });
+// Transaction
+var getBlock_1 = require("./api/Transaction/getBlock");
+Object.defineProperty(exports, "getBlock", { enumerable: true, get: function () { return __importDefault(getBlock_1).default; } });
+var getTransactionByHash_1 = require("./api/Transaction/getTransactionByHash");
+Object.defineProperty(exports, "getTransactionByHash", { enumerable: true, get: function () { return __importDefault(getTransactionByHash_1).default; } });
+var getTransactionCount_1 = require("./api/Transaction/getTransactionCount");
+Object.defineProperty(exports, "getTransactionCount", { enumerable: true, get: function () { return __importDefault(getTransactionCount_1).default; } });
+var getTransactionReceipt_1 = require("./api/Transaction/getTransactionReceipt");
+Object.defineProperty(exports, "getTransactionReceipt", { enumerable: true, get: function () { return __importDefault(getTransactionReceipt_1).default; } });
+var getTransactions_1 = require("./api/Transaction/getTransactions");
+Object.defineProperty(exports, "getTransactions", { enumerable: true, get: function () { return __importDefault(getTransactions_1).default; } });
+var sendTransaction_1 = require("./api/Transaction/sendTransaction");
+Object.defineProperty(exports, "sendTransaction", { enumerable: true, get: function () { return __importDefault(sendTransaction_1).default; } });
+// Walletscan
+var getNfts_1 = require("./api/Walletscan/getNfts");
+Object.defineProperty(exports, "getNfts", { enumerable: true, get: function () { return __importDefault(getNfts_1).default; } });
+var getNftsByContractAddress_1 = require("./api/Walletscan/getNftsByContractAddress");
+Object.defineProperty(exports, "getNftsByContractAddress", { enumerable: true, get: function () { return __importDefault(getNftsByContractAddress_1).default; } });
+var getTokenMetadata_1 = require("./api/Walletscan/getTokenMetadata");
+Object.defineProperty(exports, "getTokenMetadata", { enumerable: true, get: function () { return __importDefault(getTokenMetadata_1).default; } });
+var getTokenPrice_1 = require("./api/Walletscan/getTokenPrice");
+Object.defineProperty(exports, "getTokenPrice", { enumerable: true, get: function () { return __importDefault(getTokenPrice_1).default; } });
+var getTokenPriceByContract_1 = require("./api/Walletscan/getTokenPriceByContract");
+Object.defineProperty(exports, "getTokenPriceByContract", { enumerable: true, get: function () { return __importDefault(getTokenPriceByContract_1).default; } });
+var getTokens_1 = require("./api/Walletscan/getTokens");
+Object.defineProperty(exports, "getTokens", { enumerable: true, get: function () { return __importDefault(getTokens_1).default; } });
+var getTransactions_2 = require("./api/Walletscan/getTransactions");
+Object.defineProperty(exports, "getTransactionsWalletscan", { enumerable: true, get: function () { return __importDefault(getTransactions_2).default; } });
+// Member
+var checkUserAvailability_1 = require("./api/member/checkUserAvailability");
+Object.defineProperty(exports, "checkUserAvailability", { enumerable: true, get: function () { return __importDefault(checkUserAvailability_1).default; } });
+var createSNSUser_1 = require("./api/member/createSNSUser");
+Object.defineProperty(exports, "createSNSUser", { enumerable: true, get: function () { return __importDefault(createSNSUser_1).default; } });
+var createUserWithCode_1 = require("./api/member/createUserWithCode");
+Object.defineProperty(exports, "createUserWithCode", { enumerable: true, get: function () { return __importDefault(createUserWithCode_1).default; } });
+var createUserWithoutCode_1 = require("./api/member/createUserWithoutCode");
+Object.defineProperty(exports, "createUserWithoutCode", { enumerable: true, get: function () { return __importDefault(createUserWithoutCode_1).default; } });
+var login_1 = require("./api/member/login");
+Object.defineProperty(exports, "login", { enumerable: true, get: function () { return __importDefault(login_1).default; } });
+var sendVerificationCode_1 = require("./api/member/sendVerificationCode");
+Object.defineProperty(exports, "sendVerificationCode", { enumerable: true, get: function () { return __importDefault(sendVerificationCode_1).default; } });
+var verifyEmailCode_1 = require("./api/member/verifyEmailCode");
+Object.defineProperty(exports, "verifyEmailCode", { enumerable: true, get: function () { return __importDefault(verifyEmailCode_1).default; } });
