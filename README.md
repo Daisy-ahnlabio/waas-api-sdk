@@ -502,13 +502,13 @@ createUserWithoutCode("username", "password", 1, 1, 1, 1, 1)
 
 **login**: Authenticates a user with their email and password, and retrieves access and refresh tokens.
 
-- **Parameters**: `email`, `password`, `network`
-- **Returns**: Wallet information containing email, network, access token, and refresh token
+- **Parameters**: `email`, `password`
+- **Returns**: Wallet information containing email, access token, and refresh token
 
 **Usage**:
 
 ```typescript
-login(email, password, network)
+login(email, password)
   .then((walletInfo) => {
     console.log("Login successful:", walletInfo);
   })
