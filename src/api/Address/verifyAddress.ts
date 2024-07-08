@@ -1,41 +1,32 @@
 import axios from "axios";
 import chalk from "chalk";
 
-const getWalletBalance = async (
-  accessToken: string,
-  network: string,
-  address: string
-) => {
+const verifyAddress = async (accessToken: string, address: string) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_WAASURL}/wapi/v2/address/balance`,
+      `${process.env.REACT_APP_WAASURL}/wapi/v2/address/verify`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
         params: {
           address,
-          network,
         },
       }
     );
 
     if (response.status === 200) {
-      const balanceInWei = BigInt(response.data.result);
-      const balanceInEth = Number(balanceInWei) / 1e18;
-      const balanceWithDecimals = balanceInEth.toFixed(18);
+      const isValid = response.data.result;
       console.log(
         chalk.green("Address:"),
         chalk.blue(address),
-        chalk.green("Network:"),
-        chalk.blue(network),
-        chalk.green("Balance:"),
-        chalk.blue(balanceWithDecimals)
+        chalk.green("is valid:"),
+        chalk.blue(isValid)
       );
-      return balanceWithDecimals;
+      return isValid;
     } else {
       console.error(chalk.red(`Failed. HTTP Status: ${response.status}`));
-      return null;
+      return false;
     }
   } catch (error: any) {
     if (error.response) {
@@ -55,8 +46,8 @@ const getWalletBalance = async (
         chalk.red("An error occurred while setting up the request.")
       );
     }
-    return null;
+    return false;
   }
 };
 
-export default getWalletBalance;
+export default verifyAddress;

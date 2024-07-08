@@ -10,7 +10,7 @@ export default async function login(
   email: string,
   password: string,
   network: string
-): Promise<void> {
+): Promise<any> {
   try {
     const { channelid } = await getSecureChannel();
     const encryptedData = await encrypt(password);
@@ -44,10 +44,8 @@ export default async function login(
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token,
       };
-      console.log(
-        chalk.green("Data saved to token.json"),
-        chalk.blue(JSON.stringify(WalletInfo, null, 2))
-      );
+      console.log(chalk.blue(JSON.stringify(WalletInfo, null, 2)));
+      return WalletInfo;
     } else {
       console.error(
         chalk.red(`Login failed with status code: ${response.status}`)
