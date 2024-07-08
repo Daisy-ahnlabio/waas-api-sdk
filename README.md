@@ -1,5 +1,166 @@
 # WAAS API SDK
 
+## Transaction Example
+
+```typescript
+import { login, recoverShare } from "../api/Member";
+import { preSign, postSign } from "../api/Sign";
+import {
+  fetchGasPrice,
+  sendTransaction,
+  getTransactionReceipt,
+  getNonce,
+} from "../api/Transaction";
+import { mpcServerSign } from "../api/MPCServer";
+import readlineSync from "readline-sync";
+import chalk from "chalk";
+
+const getPrompt = (promptMessage: string) =>
+  readlineSync.question(chalk.yellow(promptMessage));
+
+const displayError = (message: string) => {
+  console.error(chalk.red(message));
+};
+
+const displaySuccess = (message: string) => {
+  console.log(chalk.green(message));
+};
+
+const displayInfo = (label: string, data: any) => {
+  console.log(chalk.bgMagenta(label, JSON.stringify(data, null, 2)));
+};
+
+const executeTransaction = async () => {
+  try {
+    const network = "polygon"; // network set
+
+    // Step 1: Login and get accessToken
+    const email = getPrompt("Enter your email: ");
+    const password = getPrompt("Enter your password: ");
+    const loginData = await login(email, password);
+
+    if (!loginData || !loginData.accessToken) {
+      displayError("Failed to login.");
+      return;
+    }
+
+    const accessToken = loginData.accessToken;
+    displaySuccess("Login successful.");
+
+    // Step 2: Recover share to get uid, wid, sid
+    const shareData = await recoverShare(accessToken, password);
+
+    if (!shareData || !shareData.uid || !shareData.wid || !shareData.sid) {
+      displayError("Failed to recover share.");
+      return;
+    }
+
+    const uid = shareData.uid;
+    const wid = shareData.wid;
+    const sid = shareData.sid;
+    displaySuccess("Share recovered successfully.");
+
+    // Step 3: Get transaction details from user
+    const transactionType = "LEGACY";
+    const to = getPrompt("Enter to address: ");
+    const value = getPrompt("Enter value (in wei): ");
+    const from = sid;
+
+    // Step 4: Fetch nonce
+    const nonce = await getNonce(accessToken, network, from);
+    displaySuccess(`Nonce fetched: ${nonce}`);
+
+    // Step 5: Fetch gas price
+    const gasInfo = await fetchGasPrice(accessToken, network);
+    displaySuccess(`Gas Info fetched: ${JSON.stringify(gasInfo)}`);
+
+    // Step 6: Pre-sign the transaction
+    const additionalData = { to, value };
+    const preSignResult = await preSign(
+      accessToken,
+      network,
+      transactionType,
+      additionalData,
+      uid,
+      wid,
+      sid
+    );
+
+    if (!preSignResult || !preSignResult.hash) {
+      displayError("Failed to obtain hash from preSign.");
+      return;
+    }
+    displayInfo("preSignResult", preSignResult);
+
+    // Step 7: Sign the transaction using MPCServerSign
+    const signResult = await mpcServerSign(
+      preSignResult.hash,
+      preSignResult.mpcToken
+    );
+
+    if (!signResult) {
+      displayError("Failed to sign data using MPCServerSign.");
+      return;
+    }
+    displaySuccess("Data signed successfully.");
+    displayInfo("signResult", signResult);
+
+    // Step 8: Post sign the transaction
+    const postSignResult = await postSign(
+      accessToken,
+      network,
+      transactionType,
+      additionalData,
+      signResult,
+      preSignResult.hash,
+      preSignResult.nonce,
+      uid,
+      wid,
+      sid
+    );
+
+    if (!postSignResult) {
+      displayError("Failed to post signed data.");
+      return;
+    }
+    displaySuccess("Signed data posted successfully.");
+    displayInfo("postSignResult", postSignResult);
+
+    // Step 9: Send the transaction
+    const sendResponseData = await sendTransaction(
+      accessToken,
+      network,
+      postSignResult.result
+    );
+
+    if (!sendResponseData) {
+      displayError("Failed to send transaction.");
+      return;
+    }
+    displaySuccess(`Transaction sent successfully: ${sendResponseData}`);
+
+    // Step 10: Get transaction receipt
+    setTimeout(async () => {
+      const receipt = await getTransactionReceipt(
+        accessToken,
+        network,
+        sendResponseData
+      );
+      if (receipt) {
+        displaySuccess("Transaction receipt received:");
+        displayInfo("receipt", receipt);
+      } else {
+        displayError("Failed to get transaction receipt.");
+      }
+    }, 5000);
+  } catch (error: any) {
+    displayError(`An error occurred: ${error.message || error}`);
+  }
+};
+
+executeTransaction();
+```
+
 ### Address Module
 
 **getNonce**: Retrieves the nonce value for a given wallet address.
