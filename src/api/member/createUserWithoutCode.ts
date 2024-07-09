@@ -1,10 +1,7 @@
 import axios from "axios";
 import qs from "qs";
-import dotenv from "dotenv";
 import { getSecureChannel, encrypt } from "../Secure-Channel/AuthUtil";
 import chalk from "chalk";
-
-dotenv.config();
 
 export default async function createUserWithoutCode(
   username: string,
@@ -32,7 +29,7 @@ export default async function createUserWithoutCode(
     });
 
     const response = await axios.post(
-      `${process.env.REACT_APP_BASEURL}/member/user-management/users/create`,
+      `${process.env.REACT_APP_WAASURL}/member/user-management/users/create`,
       data,
       {
         headers: {

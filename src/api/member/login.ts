@@ -1,10 +1,7 @@
-import dotenv from "dotenv";
 import axios from "axios";
 import { getSecureChannel, encrypt } from "../Secure-Channel/AuthUtil";
 import qs from "qs";
 import chalk from "chalk";
-
-dotenv.config();
 
 export default async function login(
   email: string,
@@ -22,7 +19,7 @@ export default async function login(
     });
 
     const response = await axios.post(
-      `${process.env.REACT_APP_BASEURL}/auth/auth-service/v2/login`,
+      `${process.env.REACT_APP_WAASURL}/auth/auth-service/v2/login`,
       data,
       {
         headers: {

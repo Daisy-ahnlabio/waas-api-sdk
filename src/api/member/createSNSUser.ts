@@ -1,9 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import dotenv from "dotenv";
 import chalk from "chalk";
-
-dotenv.config();
 
 export default async function createSNSUser(
   username: string,
@@ -31,7 +28,7 @@ export default async function createSNSUser(
     });
 
     const response = await axios.post(
-      `${process.env.REACT_APP_BASEURL}/member/user-management/v2/join`,
+      `${process.env.REACT_APP_WAASURL}/member/user-management/v2/join`,
       data,
       {
         headers: {

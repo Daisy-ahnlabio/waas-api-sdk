@@ -8,7 +8,7 @@ const sendVerificationCode = async (
 ): Promise<void> => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BASEURL}/member/mail-service/${email}/sendcode`,
+      `${process.env.REACT_APP_WAASURL}/member/mail-service/${email}/sendcode`,
       {
         params: { lang, template },
       }

@@ -5,7 +5,7 @@ import qs from "qs";
 const verifyEmailCode = async (email: string, code: string): Promise<void> => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_BASEURL}/member/mail-service/${email}/verifycode`,
+      `${process.env.REACT_APP_WAASURL}/member/mail-service/${email}/verifycode`,
       qs.stringify({
         email,
         code,

@@ -4,7 +4,7 @@ import chalk from "chalk";
 const checkUserAvailability = async (email: string): Promise<void> => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BASEURL}/member/user-management/users/${email}`,
+      `${process.env.REACT_APP_WAASURL}/member/user-management/users/${email}`,
       {
         params: { serviceid: process.env.REACT_APP_SERVICE_ID },
       }
