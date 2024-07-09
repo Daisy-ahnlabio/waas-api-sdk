@@ -61,7 +61,7 @@ export {
 } from "./api/Secure-Channel/AuthUtil";
 
 // Sign
-export { default as PreSign } from "./api/Sign/PreSign";
+export { default as preSign } from "./api/Sign/PreSign";
 export { default as postSign } from "./api/Sign/postSign";
 export { default as signTransaction } from "./api/Sign/signTransaction";
 export { default as signTypedData } from "./api/Sign/signTypedData";

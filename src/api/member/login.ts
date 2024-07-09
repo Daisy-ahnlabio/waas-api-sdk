@@ -8,8 +8,7 @@ dotenv.config();
 
 export default async function login(
   email: string,
-  password: string,
-  network: string
+  password: string
 ): Promise<any> {
   try {
     const { channelid } = await getSecureChannel();
@@ -40,7 +39,6 @@ export default async function login(
       console.log(chalk.green("Login successful."));
       const WalletInfo = {
         email: email,
-        network: network,
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token,
       };
