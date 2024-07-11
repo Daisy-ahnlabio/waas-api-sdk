@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import axios from "axios";
 import { getSecureChannel, encrypt } from "../Secure-Channel/AuthUtil";
 import qs from "qs";
