@@ -1,0 +1,1 @@
+export default function createSNSUser(username: string, code: string, joinPath: string, socialType: string, overage: number, agree: number, collect: number, thirdparty: number, advertise: number): Promise<void>;
